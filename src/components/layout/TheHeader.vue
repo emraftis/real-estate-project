@@ -3,7 +3,8 @@
         <nav>
             <h1><router-link to="/">Real Estate Calculator</router-link></h1>
             <ul>
-                <li>My Projects</li>
+                <li><router-link to="/new">New Project</router-link></li>
+                <li><router-link to="/projects">My Projects</router-link></li>
                 <!-- <li><router-link to="/calculators">All Calculators</router-link></li>
                 <li v-if="isLoggedIn"><router-link to="/projects">My Projects</router-link></li>
                 <li v-else><router-link to="/auth">Login</router-link></li>
@@ -47,7 +48,7 @@ header {
 
 header a {
   text-decoration: none;
-  color: #f391e3;
+  color: white;
   display: inline-block;
   padding: 0.75rem 1.5rem;
   border: 1px solid transparent;
@@ -56,7 +57,8 @@ header a {
 a:active,
 a:hover,
 a.router-link-active {
-  border: 1px solid #f391e3;
+  border: 1px solid white;
+  background-color: #4800a7;
 }
 
 h1 {
