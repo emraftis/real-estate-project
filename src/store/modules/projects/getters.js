@@ -5,4 +5,7 @@ export default {
   hasProjects(state) {
     return state.projects && state.projects.length > 0;
   },
+  counter(state) {
+    return state.projectsCounter;
+  },
 };

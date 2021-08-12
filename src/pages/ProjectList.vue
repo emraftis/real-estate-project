@@ -11,7 +11,6 @@
             :projectId="project.projectId"
             :projectName="project.projectName"
             :projectNOI="project.projectNOI"
-            :projectType="project.type"
             :projectValue="project.projectValue"
             ></project-item>
         </ul>
@@ -22,7 +21,7 @@
 import ProjectItem from '../components/projects/ProjectItem.vue';
 
 export default {
-    props: ['projectName','projectNOI','projectType','projectValue', 'projectId'],
+    props: ['projectName','projectNOI','projectValue', 'projectId'],
     computed: {
         projectList() {
             const projects = this.$store.getters.projects;
