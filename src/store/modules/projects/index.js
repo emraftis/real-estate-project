@@ -6,7 +6,6 @@ export default {
   state() {
     return {
       userId: 90210,
-      projectsCounter: 0,
       projects: [
         {
           projectId: 100,

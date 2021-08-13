@@ -3,24 +3,17 @@
 	- projects []
 		> projectId #
 		> creatorId #
-		> projectDetails{}
-			> type ""
-			> projectName ""
-			> description ""
-			> googleSheetsLink ""
-		> projectFinancials{}
-			> projectNOI (computed) #$
-			> projectValue (computed) #$
-			> annualRevenue #$
-			> annualExpenses #$
-			> vacancyAllowance #%
-			> managementFee #%
-			> maintenanceAllowance #%
-		> projectTenants[]
-			{+ unit ""
-			 + tenantName ""
-			 + squareFoot #
-			 + NNN T/F      }
+		> projectName ""
+		> description ""
+		> googleSheetsLink ""
+		> projectNOI (computed) #$
+		> projectValue (computed) #$
+		> annualRevenue #$
+		> annualExpenses #$
+		> vacancyAllowance #%
+		> managementFee #%
+		> maintenanceAllowance #%
+		> capRate #%
 
 
 
