@@ -68,7 +68,13 @@ export default {
         //     return;
         // }
 
-            const projectNumber = this.$store.getters.counter;
+            //this random projectNumber is not unique... need to fix it eventually. 
+            let projectNumber = (Math.floor(Math.random() * 100) + 50).toString() + (Math.floor(Math.random() * 100) + 50).toString() + (Math.floor(Math.random() * 100) + 50).toString();
+                // this might work?
+                // if (this.$state.getters.projects.find(project => projectId === projectNumber)) {
+                //     projectNumber + Math.floor(Math.random() * 10).toString();
+                // }
+            
             const formData = {
                 projectId: projectNumber,
                 projectName: this.projectName,
