@@ -4,7 +4,7 @@
             <h1>Project List Page</h1>
             <router-link to="/new"><base-button class="outline">Create New Project</base-button></router-link>
         </base-card>
-        <ul>
+        <ul v-if="projectList.length > 0">
             <project-item 
             v-for="project in projectList"
             :key="project.projectId"
@@ -14,6 +14,10 @@
             :projectValue="project.projectValue"
             ></project-item>
         </ul>
+        <base-card v-else>
+            <p>No projects have been created.</p>
+        </base-card>
+        
     </section>
 </template>
 
@@ -24,12 +28,19 @@ export default {
     props: ['projectName','projectNOI','projectValue', 'projectId'],
     computed: {
         projectList() {
-            const projects = this.$store.getters.projects;
-            return projects
+            return this.$store.getters.projects
         },
     },
     components: {
         ProjectItem,
+    },
+    methods: {
+        async loadProjects() {
+            await this.$store.dispatch('fetchProjects')
+        }
+    },
+    created() {
+        this.loadProjects();
     }
 }
 </script>

@@ -24,8 +24,5 @@ export default {
     components: {
         ProjectDetailsForm
     },
-    // methods: {
-    //     saveData(data) {},
-    // }
 }
 </script>
