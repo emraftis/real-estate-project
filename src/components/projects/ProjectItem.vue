@@ -4,7 +4,7 @@
             <h2>{{ projectName }}</h2>
             <p>Net Operating Income: {{ formatCurrency(projectNOI) }}</p>
             <p>Estimated Value: {{ formatCurrency(projectValue) }}</p>
-            <router-link :to="projectDetailsLink"><base-button>Details</base-button></router-link>
+            <router-link :to="projectDetailsLink" :userId="theUserId"><base-button>Details</base-button></router-link>
         </base-card>
     </li>
 </template>
@@ -17,11 +17,14 @@ const formatter = new Intl.NumberFormat('en-US', {
 });
 
 export default {
-    props: ['projectName', 'projectNOI', 'projectValue', 'projectId'],
+    props: ['projectName', 'projectNOI', 'projectValue', 'projectId', 'userId'],
     computed: {
         projectDetailsLink() {
             return "/projects/" + this.projectId;
         },
+        theUserId() {
+            return localStorage.getItem("userId");
+        }
     },
     methods: {
         formatCurrency(number) {

@@ -38,8 +38,10 @@ export default {
       creatorId: userId,
     });
   },
+
   async fetchProjects(context) {
     const userId = localStorage.getItem("userId");
+    console.log(userId);
     const response = await fetch(
       `https://real-estate-project-14317-default-rtdb.firebaseio.com/${userId}.json`
     );
@@ -61,7 +63,7 @@ export default {
         annualExpenses: responseData[key].annualExpenses,
         vacancyAllowance: responseData[key].vacancyAllowance,
         managementFee: responseData[key].managementFee,
-        maintenanceAllowance: responseData[key].maintenanceAllowance,
+        structuralAllowance: responseData[key].structuralAllowance,
         capRate: responseData[key].capRate,
         creatorId: userId,
       };

@@ -6,7 +6,4 @@ export default {
   hasProjects(_, getters) {
     return getters.projects && getters.projects.length > 0;
   },
-  counter(state) {
-    return state.projectsCounter;
-  },
 };
