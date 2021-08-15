@@ -5,7 +5,6 @@ import getters from "./getters.js";
 export default {
   state() {
     return {
-      userId: 90210,
       projects: [
         // {
         //   projectId: 100,

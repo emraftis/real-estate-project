@@ -1,4 +1,6 @@
 <template>
+<div>
+    <the-header></the-header>
     <section>
         <base-card>
             <h2>New Project</h2>
@@ -7,22 +9,24 @@
             </div>
         </base-card>
     </section>
+</div>
 </template>
 
 <script>
 import ProjectDetailsForm from '../components/projects/ProjectDetailsForm.vue';
+import TheHeader from '../components/layout/TheHeader.vue';
 
 export default {
 
     methods: {
         saveData(data) {
             this.$store.dispatch('createProject', data);
-            console.log(this.$router);
             this.$router.replace('/projects');
         },
     },
     components: {
-        ProjectDetailsForm
+        ProjectDetailsForm,
+        TheHeader,
     },
 }
 </script>

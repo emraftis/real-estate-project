@@ -1,9 +1,10 @@
 export default {
   projects(state) {
-    return state.projects;
+    const creatorId = localStorage.userId;
+    return state.projects.filter((project) => project.creatorId === creatorId);
   },
-  hasProjects(state) {
-    return state.projects && state.projects.length > 0;
+  hasProjects(_, getters) {
+    return getters.projects && getters.projects.length > 0;
   },
   counter(state) {
     return state.projectsCounter;

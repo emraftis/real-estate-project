@@ -1,5 +1,4 @@
 <template>
-  <the-header></the-header>
   <router-view v-slot="slotProps">
         <transition name="route" mode="out-in">
             <component :is="slotProps.Component"></component>
@@ -8,12 +7,22 @@
 </template>
 
 <script>
-import TheHeader from './components/layout/TheHeader.vue';
-
 export default {
-  components: {
-    TheHeader,
-  },
+    created() {
+        this.$store.dispatch('autoLogin');
+    },
+    computed: {
+        didAutoLogout() {
+            return this.$store.getters.didAutoLogout;
+        },
+    },
+    watch: {
+        didAutoLogout(currentValue, oldValue) {
+            if (currentValue && currentValue !== oldValue) {
+                this.$router.replace('/projects')
+            }
+        },
+    }
 }
 </script>
 

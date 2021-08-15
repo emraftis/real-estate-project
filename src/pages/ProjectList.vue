@@ -1,10 +1,16 @@
 <template>
+<div>
+    <the-header></the-header>
     <section>
         <base-card>
-            <h1>Project List Page</h1>
-            <router-link to="/new"><base-button class="outline">Create New Project</base-button></router-link>
+            <div v-if="isLoggedIn">
+                <h1 >My Projects</h1>
+                <router-link to="/new"><base-button class="outline">Create New Project</base-button></router-link>
+            </div>
+            <h1 v-else>Please login to view and create new projects</h1>
+            
         </base-card>
-        <ul v-if="projectList.length > 0">
+        <ul v-if="hasProjects">
             <project-item 
             v-for="project in projectList"
             :key="project.projectId"
@@ -14,25 +20,23 @@
             :projectValue="project.projectValue"
             ></project-item>
         </ul>
-        <base-card v-else>
-            <p>No projects have been created.</p>
+        <base-card v-else-if="isLoggedIn">
+            <p>You dont have any projects yet!</p>
         </base-card>
-        
+
     </section>
+</div>
 </template>
 
 <script>
 import ProjectItem from '../components/projects/ProjectItem.vue';
+import TheHeader from '../components/layout/TheHeader.vue';
 
 export default {
     props: ['projectName','projectNOI','projectValue', 'projectId'],
-    computed: {
-        projectList() {
-            return this.$store.getters.projects
-        },
-    },
     components: {
         ProjectItem,
+        TheHeader,
     },
     methods: {
         async loadProjects() {
@@ -41,7 +45,18 @@ export default {
     },
     created() {
         this.loadProjects();
-    }
+    },
+    computed: {
+        projectList() {
+            return this.$store.getters.projects;
+        },
+        isLoggedIn() {
+            return this.$store.getters.isAuthenticated;
+        },
+        hasProjects() {
+            return this.$store.getters.hasProjects;
+        }
+    },
 }
 </script>
 

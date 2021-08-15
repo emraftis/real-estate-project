@@ -3,12 +3,10 @@
         <nav>
             <h1><router-link to="/">Real Estate Calculator</router-link></h1>
             <ul>
-                <li><router-link to="/new">New Project</router-link></li>
-                <li><router-link to="/projects">My Projects</router-link></li>
-                <!-- <li><router-link to="/calculators">All Calculators</router-link></li>
-                <li v-if="isLoggedIn"><router-link to="/projects">My Projects</router-link></li>
-                <li v-else><router-link to="/auth">Login</router-link></li>
-                <li v-if="isLoggedIn"><base-button @click="logout">Logout</base-button></li> -->
+                <li><router-link v-if="isLoggedIn" to="/new">New Project</router-link></li>
+                <li><router-link v-if="isLoggedIn" to="/projects">My Projects</router-link></li>
+                <li v-if="!isLoggedIn"><router-link to="/auth">Login</router-link></li>
+                <li v-if="isLoggedIn"><span class="logoutBtn" @click="logout">Logout</span></li>
             </ul>
         </nav>
     </header>
@@ -16,24 +14,35 @@
 
 <script>
 export default {
-//   computed: {
-//     isLoggedIn() {
-//       return this.$store.getters.isAuthenticated;
-//     }
-//   },
-//   methods: {
-//     logout() {
-//       this.$store.dispatch('logout');
-//       this.$router.replace('/coaches');
-
-//     }
-//   }
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated;
+    },
+    homePagePath() {
+            if (this.$route.path === "/") {
+                return 1;
+            }
+            return -1;
+        }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout');
+      this.$router.replace('/');
+    }
+  }
 }
 </script>
 
 <style scoped>
-li, h1 {
+h1 {
     color: white;
+    font-weight: 400;
+}
+
+li {
+    color: white;
+    font-weight: 600;
 }
 
 header {
@@ -74,6 +83,7 @@ h1 a:hover,
 h1 a:active,
 h1 a.router-link-active {
   border-color: transparent;
+  background-color: #3d008d;
 }
 
 header nav {
@@ -95,5 +105,23 @@ header ul {
 
 li {
   margin: 0 0.5rem;
+}
+
+.logoutBtn {
+ border: none;
+ color: white;
+ text-decoration: none;
+  color: white;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+}
+
+.logoutBtn:hover, 
+.logoutBtn:active {
+  border: 1px solid white;
+  background-color: #4800a7;
 }
 </style>

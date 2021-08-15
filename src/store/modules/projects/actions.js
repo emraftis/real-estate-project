@@ -1,5 +1,7 @@
 export default {
   async createProject(context, data) {
+    const userId = localStorage.getItem("userId");
+    console.log(data.projectValue);
     const projectData = {
       projectId: data.projectId,
       projectName: data.projectName,
@@ -10,28 +12,36 @@ export default {
       annualExpenses: data.annualExpenses,
       vacancyAllowance: data.vacancyAllowance,
       managementFee: data.managementFee,
-      maintenanceAllowance: data.maintenanceAllowance,
+      structuralAllowance: data.structuralAllowance,
       capRate: data.capRate,
     };
 
+    console.log(projectData.projectValue);
+
     const response = await fetch(
-      `https://real-estate-project-14317-default-rtdb.firebaseio.com/90210.json`,
+      `https://real-estate-project-14317-default-rtdb.firebaseio.com/${userId}.json`,
       {
         method: "POST",
-        body: JSON.stringify({ ...projectData, creatorId: 90210 }),
+        body: JSON.stringify({
+          ...projectData,
+          creatorId: userId,
+        }),
       }
     );
 
-    console.log(response);
+    if (!response.ok) {
+      //error
+    }
 
     context.commit("createProject", {
       ...projectData,
-      creatorId: 90210,
+      creatorId: userId,
     });
   },
   async fetchProjects(context) {
+    const userId = localStorage.getItem("userId");
     const response = await fetch(
-      `https://real-estate-project-14317-default-rtdb.firebaseio.com/90210.json`
+      `https://real-estate-project-14317-default-rtdb.firebaseio.com/${userId}.json`
     );
     const responseData = await response.json();
 
@@ -53,6 +63,7 @@ export default {
         managementFee: responseData[key].managementFee,
         maintenanceAllowance: responseData[key].maintenanceAllowance,
         capRate: responseData[key].capRate,
+        creatorId: userId,
       };
       projects.push(project);
     }
