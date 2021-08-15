@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-if="selectedProject">
     <section>
         <the-header></the-header>
             <base-card>
@@ -31,6 +31,7 @@
         </base-card>
     </section>
 </div>
+<div v-else></div>
 </template>
 
 <script>
@@ -45,15 +46,20 @@ const formatter = new Intl.NumberFormat('en-US', {
 export default {
     data() {
         return {
-            selectedProject: []
+            selectedProject: null,
+            isLoading: true
         }
     },
     components: {
         TheHeader,
     },
-    props: ['id', 'userId'],
-    created() {
-        this.selectedProject = this.$store.getters.projects.find(project => project.projectId === this.$route.params.id) 
+    props: ['id'],
+    async created() {
+        await this.loadProjects();
+        this.selectedProject = await this.$store.getters.projects.find(project => project.projectId === this.$route.params.id) 
+    },
+    updated() {
+        this.refresh()
     },
     methods: {
         formatCurrency(number) {
@@ -61,9 +67,15 @@ export default {
         },
         async loadProjects() {
             await this.$store.dispatch('fetchProjects')
-        }
+        },
+        refresh() {
+            this.selectedProject = this.$store.getters.projects.find(project => project.projectId === this.$route.params.id) 
+        },
     },
     computed: {
+        projectDetailsLink() {
+            return "/projects/" + this.$route.params.id;
+        },
         projectName() {
             return this.selectedProject.projectName
         },

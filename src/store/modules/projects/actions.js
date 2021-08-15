@@ -41,7 +41,6 @@ export default {
 
   async fetchProjects(context) {
     const userId = localStorage.getItem("userId");
-    console.log(userId);
     const response = await fetch(
       `https://real-estate-project-14317-default-rtdb.firebaseio.com/${userId}.json`
     );

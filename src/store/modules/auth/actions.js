@@ -60,7 +60,7 @@ export default {
     });
   },
 
-  autoLogin(context) {
+  async autoLogin(context) {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
     const tokenExpiration = localStorage.getItem("tokenExpiration");
