@@ -35,7 +35,7 @@
         </div>
         <div class="final-step" v-if="firstStep.val && secondStep.val">
             <div class="form-control" :class="{invalid: !vacancyAllowanceInput.isValid}">
-                <label for="vacancyAllowanceInput">Vacancy Allowance, as a % of Gross Income:</label>
+                <label for="vacancyAllowanceInput">Vacancy Allowance, as a % of Rental Income:</label>
                 <input type="number" id="vacancyAllowanceInput" v-model="vacancyAllowanceInput.val" @blur="clearValid('vacancyAllowanceInput')" />
                 <p v-if="!vacancyAllowanceInput.isValid">Please enter a valid vacancy allowance %</p>
             </div>

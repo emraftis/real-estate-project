@@ -1,7 +1,7 @@
 <template>
     <header>
         <nav>
-            <h1><router-link to="/">Real Estate Calculator</router-link></h1>
+            <h1><router-link to="/"><span class="logo-text">Real Estate Calculator</span></router-link></h1>
             <ul>
                 <li><router-link v-if="isLoggedIn" to="/new">New Project</router-link></li>
                 <li><router-link v-if="isLoggedIn" to="/projects">My Projects</router-link></li>
@@ -124,4 +124,5 @@ li {
   border: 1px solid white;
   background-color: #4800a7;
 }
+ 
 </style>

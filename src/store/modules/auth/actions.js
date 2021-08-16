@@ -36,6 +36,7 @@ export default {
     });
     const responseData = await response.json();
 
+    //throws an error if failed to authenticate
     if (!response.ok) {
       const error = new Error(responseData.message || "Failed to authenticate");
       throw error;
