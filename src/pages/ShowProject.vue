@@ -1,14 +1,12 @@
 <template>
 <div v-if="selectedProject">
-    <section>
-        <the-header></the-header>
-            <base-card>
+    <the-header></the-header>
+    <section class="show-background">
+            <base-card class="card-container">
                 <h2>{{ projectName }}</h2>
                 <p class="project-description">{{ projectDescription }}</p>
             </base-card>
-    </section>
-    <section>
-        <base-card>
+        <base-card class="card-container">
             <h2>NOI Calculation:</h2>
             <table class="table-container">
                 <tr>
@@ -42,7 +40,7 @@
             </table>
         </base-card>
         
-        <base-card>
+        <base-card class="card-container">
             <h2>Property Value Estimate</h2>
             <p>Using the Income Approach to Value</p>
             <table class="table-container">
@@ -167,7 +165,7 @@ ul, li {
 }
 
 .table-container {
-    text-align: left;
+    text-align: right;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1rem;
@@ -181,5 +179,18 @@ ul, li {
 
 .total-value-col {
     border-top: 1.5px solid black;
+}
+
+.show-background {
+    background: url('https://images.unsplash.com/photo-1520764816423-52375cbff016?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80');
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+}
+
+.card-container {
+    background-color: white;
+    opacity: 0.95;
 }
 </style>

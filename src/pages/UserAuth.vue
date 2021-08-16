@@ -1,6 +1,9 @@
 <template>
     <div class="auth-background">
         <div class="container">
+            <base-dialog :show="error" title="Error" @close="handleError">
+                <p>{{ error }}</p>
+            </base-dialog>
             <base-dialog :show="isLoading" title="Authenticating..." fixed>
                 <base-spinner></base-spinner>
             </base-dialog>

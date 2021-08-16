@@ -1,6 +1,6 @@
 <template>
     <li>
-        <base-card>
+        <base-card class="card-container">
             <h2>{{ projectName }}</h2>
             <p>Net Operating Income: {{ formatCurrency(projectNOI) }}</p>
             <p>Estimated Value: {{ formatCurrency(projectValue) }}</p>
@@ -38,5 +38,10 @@ export default {
 
 h2, h3, p {
     margin-top: 0.5rem;
+}
+
+.card-container {
+    background-color: white;
+    opacity: 0.95;
 }
 </style>
