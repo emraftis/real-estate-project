@@ -1,5 +1,6 @@
 <template>
     <div class="auth-background">
+        <the-header></the-header>
         <div class="container">
             <base-dialog :show="error" title="Error" @close="handleError">
                 <p>{{ error }}</p>
@@ -12,15 +13,16 @@
                     <h2 class="form-header">{{ formText }}</h2>
                     <div class="form-control">
                         <label for="email">Email</label>
-                        <input type="email" id="email" v-model.trim="email">
+                        <input autocomplete="username" type="email" id="email" v-model.trim="email">
                     </div>
                     <div class="form-control">
                         <label for="password">Password</label>
-                        <input type="password" id="password" v-model.trim="password">
+                        <input autocomplete="current-password" type="password" id="password" v-model.trim="password">
                     </div>
                     <p v-if="!formIsValid">Please enter a valid email and password, at least 6 characters long.</p>
                     <base-button>{{ submitButtonCapition }}</base-button>
                     <base-button type="button" mode="flat" @click="switchAuthMode">{{ switchModeButtonCapiion }}</base-button>
+                    <base-button class="demo-button" type="button" @click="demoAuth">Try Demo</base-button>
                 </form>
             </base-card>
         </div>
@@ -28,6 +30,8 @@
 </template>
 
 <script>
+import TheHeader from '../components/layout/TheHeader.vue';
+
 export default {
     data() {
         return {
@@ -38,6 +42,9 @@ export default {
             isLoading: false,
             error: false,
         }
+    },
+    components: {
+        TheHeader,
     },
     computed: {
         submitButtonCapition() {
@@ -63,13 +70,19 @@ export default {
         }
     },
     methods: {
+        demoAuth() {
+            this.email = 'demo@demo.com';
+            this.password = 'demodemo';
+            this.submitForm()
+        },
         async submitForm() {
-            this.formIsValid = true;                //validation
+            //form validation
+            this.formIsValid = true;                
             if (this.email === '' || !this.email.includes('@') || this.password.length < 6) {
                 this.formIsValid = false;
                 return;
             }
-            this.isLoading = true;                  //after validation, Loading begins
+            this.isLoading = true;
 
             try {
                 if (this.mode === 'login') {
@@ -160,6 +173,11 @@ textarea:focus {
 
 .form-header {
     margin-bottom: 5%;
+}
+
+.demo-button {
+    position: relative;
+    float: right;
 }
 
 </style>

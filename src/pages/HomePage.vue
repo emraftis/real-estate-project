@@ -19,11 +19,6 @@ export default {
             return this.$store.getters.isAuthenticated
         }
     },
-    methods: {
-        pageRoute() {
-            console.log(this.$route)
-        }
-    }
 }
 </script>
 
