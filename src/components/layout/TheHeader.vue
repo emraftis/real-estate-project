@@ -67,7 +67,7 @@ a:active,
 a:hover,
 a.router-link-active {
   border: 1px solid white;
-  background-color: #474747;
+  background-color: #f16565;
 }
 
 h1 {
@@ -122,7 +122,7 @@ li {
 .logoutBtn:hover, 
 .logoutBtn:active {
   border: 1px solid white;
-  background-color: #474747;
+  background-color: #f16565;
 }
  
 </style>

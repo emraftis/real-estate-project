@@ -2,6 +2,7 @@
     <li>
         <base-card class="card-container">
             <h2>{{ projectName }}</h2>
+            <p>{{ shortDescription(160) }}</p>
             <p>Net Operating Income: {{ formatCurrency(projectNOI) }}</p>
             <p>Estimated Value: {{ formatCurrency(projectValue) }}</p>
             <router-link :to="projectDetailsLink"><base-button>Details</base-button></router-link>
@@ -17,19 +18,26 @@ const formatter = new Intl.NumberFormat('en-US', {
 });
 
 export default {
-    props: ['projectName', 'projectNOI', 'projectValue', 'projectId'],
+    props: ['projectName', 'projectNOI', 'projectValue', 'projectId', 'projectDescription'],
     computed: {
         projectDetailsLink() {
             return "/projects/" + this.projectId;
         },
         theUserId() {
             return localStorage.getItem("userId");
-        }
+        },
     },
     methods: {
         formatCurrency(number) {
             return formatter.format(number);
         },
+        shortDescription(charLength) {
+            if (this.projectDescription.length < charLength) {
+                return this.projectDescription
+            } else {
+                return this.projectDescription.slice(0,charLength) + "..."
+            }
+        }
     },
 }
 </script>

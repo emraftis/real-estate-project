@@ -19,6 +19,7 @@
             :key="project.projectId"
             :projectId="project.projectId"
             :projectName="project.projectName"
+            :projectDescription="project.description"
             :projectNOI="project.projectNOI"
             :projectValue="project.projectValue"
             ></project-item>
@@ -32,7 +33,7 @@ import ProjectItem from '../components/projects/ProjectItem.vue';
 import TheHeader from '../components/layout/TheHeader.vue';
 
 export default {
-    props: ['projectName','projectNOI','projectValue', 'projectId'],
+    props: ['projectName','projectNOI','projectValue', 'projectId', 'projectDescription'],
     components: {
         ProjectItem,
         TheHeader,

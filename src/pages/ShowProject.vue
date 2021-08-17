@@ -73,7 +73,6 @@
     //formatting for currency
 import TheHeader from '../components/layout/TheHeader.vue';
 import XLSX from 'xlsx';
-console.log(XLSX);
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -112,19 +111,19 @@ export default {
         refresh() {
             this.selectedProject = this.$store.getters.projects.find(project => project.projectId === this.$route.params.id) 
         },
-        getNOIExcel(_, fn, dl) {
-            var elt = this.$refs.NOITable;
-            var wb = XLSX.utils.table_to_book(elt, {sheet:"Sheet JS"});
-            return dl ?
-                XLSX.write(wb, {bookType: 'xlsx', bookSST: true, type: 'base64'}) :
-            XLSX.writeFile(wb, fn || (`Project-${this.id}-NOI.xlsx`))
+        getNOIExcel(_, fileName, download) {
+            const table = this.$refs.NOITable;
+            const workbook = XLSX.utils.table_to_book(table, {sheet:"Sheet JS"});
+            return download ?
+                XLSX.write(workbook, {bookType: 'xlsx', bookSST: true, type: 'base64'}) :
+            XLSX.writeFile(workbook, fileName || (`Project-${this.id}-NOI.xlsx`))
         },
-        getValueExcel(_, fn, dl) {
-            var elt = this.$refs.valueTable;
-            var wb = XLSX.utils.table_to_book(elt, {sheet:"Sheet JS"});
-            return dl ?
-                XLSX.write(wb, {bookType: 'xlsx', bookSST: true, type: 'base64'}) :
-            XLSX.writeFile(wb, fn || (`Project-${this.id}-Value.xlsx`))
+        getValueExcel(_, fileName, download) {
+            const elt = this.$refs.valueTable;
+            const workbook = XLSX.utils.table_to_book(elt, {sheet:"Sheet JS"});
+            return download ?
+                XLSX.write(workbook, {bookType: 'xlsx', bookSST: true, type: 'base64'}) :
+            XLSX.writeFile(workbook, fileName || (`Project-${this.id}-Value.xlsx`))
         },
     },
     computed: {
