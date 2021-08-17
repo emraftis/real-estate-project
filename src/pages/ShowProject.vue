@@ -8,7 +8,7 @@
             </base-card>
         <base-card class="card-container">
             <h2>NOI Calculation:</h2>
-            <table class="table-container">
+            <table class="table-container-NOI" ref="NOITable">
                 <tr>
                     <td><strong>Rental Income:</strong></td>
                     <td class="value-col"><strong>{{ formatCurrency(annualIncome) }}</strong></td>
@@ -38,14 +38,17 @@
                     <td class="total-value-col"><strong>{{ formatCurrency(projectNOI) }}</strong></td>
                 </tr>
             </table>
+            <div class="excelButton">
+                <base-button @click="getNOIExcel">Export to Excel</base-button>
+            </div>
         </base-card>
         
         <base-card class="card-container">
             <h2>Property Value Estimate</h2>
             <p>Using the Income Approach to Value</p>
-            <table class="table-container">
+            <table class="table-container-value" ref="valueTable">
                 <tr>
-                    <td>Net Operating Income:</td>
+                    <td>Net Operating Income</td>
                     <td class="value-col">{{ formatCurrency(projectNOI) }}</td>
                 </tr>
                 <tr>
@@ -57,6 +60,9 @@
                     <td class="total-value-col"><strong>{{ formatCurrency(projectValue) }}</strong></td>
                 </tr>
             </table>
+            <div class="excelButton">
+                <base-button @click="getValueExcel">Export to Excel</base-button>
+            </div>
         </base-card>
     </section>
 </div>
@@ -66,6 +72,8 @@
 <script>
     //formatting for currency
 import TheHeader from '../components/layout/TheHeader.vue';
+import XLSX from 'xlsx';
+console.log(XLSX);
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -76,7 +84,8 @@ export default {
     data() {
         return {
             selectedProject: null,
-            isLoading: true
+            isLoading: true,
+            error: false,
         }
     },
     components: {
@@ -91,6 +100,9 @@ export default {
         this.refresh()
     },
     methods: {
+        handleError() {
+            this.error = null;
+        },
         formatCurrency(number) {
             return formatter.format(number);
         },
@@ -99,6 +111,20 @@ export default {
         },
         refresh() {
             this.selectedProject = this.$store.getters.projects.find(project => project.projectId === this.$route.params.id) 
+        },
+        getNOIExcel(_, fn, dl) {
+            var elt = this.$refs.NOITable;
+            var wb = XLSX.utils.table_to_book(elt, {sheet:"Sheet JS"});
+            return dl ?
+                XLSX.write(wb, {bookType: 'xlsx', bookSST: true, type: 'base64'}) :
+            XLSX.writeFile(wb, fn || (`Project-${this.id}-NOI.xlsx`))
+        },
+        getValueExcel(_, fn, dl) {
+            var elt = this.$refs.valueTable;
+            var wb = XLSX.utils.table_to_book(elt, {sheet:"Sheet JS"});
+            return dl ?
+                XLSX.write(wb, {bookType: 'xlsx', bookSST: true, type: 'base64'}) :
+            XLSX.writeFile(wb, fn || (`Project-${this.id}-Value.xlsx`))
         },
     },
     computed: {
@@ -164,7 +190,8 @@ ul, li {
     padding: 1rem;
 }
 
-.table-container {
+.table-container-NOI, 
+.table-container-value {
     text-align: right;
     margin-left: auto;
     margin-right: auto;
@@ -182,9 +209,9 @@ ul, li {
 }
 
 .show-background {
-    background: url('https://images.unsplash.com/photo-1485627941502-d2e6429a8af0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=100');
+    background: url('https://images.unsplash.com/photo-1496307653780-42ee777d4833?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=100');
     background-size: cover;
-    position: fixed;
+    background-attachment: fixed;
     width: 100%;
     height: 100vh;
 }
@@ -192,5 +219,10 @@ ul, li {
 .card-container {
     background-color: white;
     opacity: 0.95;
+}
+
+.excelButton {
+    display: flex;
+    justify-content: center;
 }
 </style>

@@ -1,17 +1,19 @@
 <template>
 <div>
+    <base-dialog :show="!!error" title="An error occured!" @close="handleError">
+            <p>{{ error }}</p>
+    </base-dialog>
     <the-header></the-header>
     <div class="list-background"></div>
     <section>
         <base-card class="card-container">
             <div v-if="isLoggedIn">
                 <h1 >My Projects</h1>
-                <router-link to="/new"><base-button class="outline">Create New Project</base-button></router-link>
+                <router-link to="/new"><base-button class="outline"><strong>Create New Project</strong></base-button></router-link>
             </div>
-            <h1 v-else>Please login to view and create new projects</h1>
-            
+            <h1 v-else>Please login to view and create new projects</h1>   
         </base-card>
-        <ul v-if="hasProjects">
+        <ul>
             <project-item 
             v-for="project in projectList"
             :key="project.projectId"
@@ -21,10 +23,6 @@
             :projectValue="project.projectValue"
             ></project-item>
         </ul>
-        <base-card v-else-if="isLoggedIn">
-            <p>You dont have any projects yet!</p>
-        </base-card>
-
     </section>
 </div>
 </template>
@@ -54,9 +52,6 @@ export default {
         isLoggedIn() {
             return this.$store.getters.isAuthenticated;
         },
-        hasProjects() {
-            return this.$store.getters.hasProjects;
-        }
     },
 }
 </script>

@@ -32,7 +32,7 @@ a {
   text-decoration: none;
   padding: 0.75rem 1.5rem;
   font: inherit;
-  background-color: #3a0061;
+  background-color: #2e2e2e;
   border: 1px solid #3a0061;
   color: white;
   cursor: pointer;
@@ -46,26 +46,27 @@ a:hover,
 a:active,
 button:hover,
 button:active {
-  background-color: #580092;
-  border-color: #270041;
+  background-color: #f16565;
+  border-color: #c95454;
 }
 
 .flat {
   background-color: transparent;
-  color: #3a0061;
+  color: #5a5a5a;
   border: none;
 }
 
 .outline {
   background-color: transparent;
-  border-color: #270041;
-  color: #270041;
+  border-color: #c95454;
+  color: #f16565;
 }
 
 .flat:hover,
 .flat:active,
 .outline:hover,
 .outline:active {
-  background-color: #edd2ff;
+  background-color: #f16565;
+  color: white;
 }
 </style>

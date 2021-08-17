@@ -48,7 +48,7 @@ li {
 header {
   width: 100%;
   height: 5rem;
-  background-color: #3d008d;
+  background-color: #2e2e2e;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,7 +67,7 @@ a:active,
 a:hover,
 a.router-link-active {
   border: 1px solid white;
-  background-color: #4800a7;
+  background-color: #474747;
 }
 
 h1 {
@@ -83,7 +83,7 @@ h1 a:hover,
 h1 a:active,
 h1 a.router-link-active {
   border-color: transparent;
-  background-color: #3d008d;
+  background-color: #2e2e2e;
 }
 
 header nav {
@@ -122,7 +122,7 @@ li {
 .logoutBtn:hover, 
 .logoutBtn:active {
   border: 1px solid white;
-  background-color: #4800a7;
+  background-color: #474747;
 }
  
 </style>

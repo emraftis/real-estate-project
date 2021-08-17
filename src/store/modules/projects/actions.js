@@ -1,7 +1,6 @@
 export default {
   async createProject(context, data) {
     const userId = localStorage.getItem("userId");
-    console.log(data.projectValue);
     const projectData = {
       projectId: data.projectId,
       projectName: data.projectName,
@@ -15,9 +14,6 @@ export default {
       structuralAllowance: data.structuralAllowance,
       capRate: data.capRate,
     };
-
-    console.log(projectData.projectValue);
-
     const response = await fetch(
       `https://real-estate-project-14317-default-rtdb.firebaseio.com/${userId}.json`,
       {
@@ -29,9 +25,15 @@ export default {
       }
     );
 
+    const responseData = await response.json();
     if (!response.ok) {
-      //error
+      const error = new Error(responseData.message || "Failed to Create");
+      throw error;
     }
+
+    //Create Google Sheets w/ relevant data
+
+    //
 
     context.commit("createProject", {
       ...projectData,
@@ -47,7 +49,10 @@ export default {
     const responseData = await response.json();
 
     if (!response.ok) {
-      //error
+      const error = new Error(
+        responseData.message || "Failed to Find Projects"
+      );
+      throw error;
     }
 
     const projects = [];
