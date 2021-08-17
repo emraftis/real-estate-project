@@ -5,7 +5,7 @@ import HomePage from "./pages/HomePage.vue";
 import NewProject from "./pages/NewProject.vue";
 import ProjectList from "./pages/ProjectList.vue";
 import ShowProject from "./pages/ShowProject.vue";
-// import ProjectEdit from "./pages/ProjectEdit.vue";
+import NotFound from "./pages/NotFound.vue";
 import UserAuth from "./pages/UserAuth.vue";
 
 const router = createRouter({
@@ -19,14 +19,9 @@ const router = createRouter({
       props: true,
       meta: { requiresAuth: true },
     }, //ShowProject.vue
-    // {
-    //   path: "/projects/:id/edit",
-    //   component: ProjectEdit,
-    //   meta: { requiresAuth: true },
-    // }, //EditProject.vue
     { path: "/new", component: NewProject, meta: { requiresAuth: true } }, //NewProject.vue
     { path: "/auth", component: UserAuth, meta: { requiresUnauth: true } }, //UserAuth.vue
-    { path: "/:notFound(.*)", component: null }, //NotFound.vue
+    { path: "/:notFound(.*)", component: NotFound }, //NotFound.vue
   ],
 });
 
