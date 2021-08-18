@@ -70,8 +70,9 @@
 </template>
 
 <script>
-    //formatting for currency
 import TheHeader from '../components/layout/TheHeader.vue';
+
+//formatting for currency
 import XLSX from 'xlsx';
 const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -90,7 +91,7 @@ export default {
     components: {
         TheHeader,
     },
-    props: ['id'],
+    props: ['id', 'name', 'description', 'revenue', 'expenses', 'vacancyAllowanceInput', 'managementFeeInput', 'structuralAllowanceInput', 'capRateInput'],
     async created() {
         await this.loadProjects();
         this.selectedProject = await this.$store.getters.projects.find(project => project.projectId === this.$route.params.id) 

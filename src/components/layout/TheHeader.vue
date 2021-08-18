@@ -3,6 +3,7 @@
         <nav>
             <h1><router-link to="/"><span class="logo-text">Real Estate Calculator</span></router-link></h1>
             <ul>
+                <li><router-link to="/faq">FAQs</router-link></li>
                 <li><router-link v-if="isLoggedIn" to="/new">New Project</router-link></li>
                 <li><router-link v-if="isLoggedIn" to="/projects">My Projects</router-link></li>
                 <li v-if="!isLoggedIn"><router-link to="/auth">Login</router-link></li>
@@ -28,7 +29,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch('logout');
-      this.$router.replace('/');
+      this.$router.replace('/auth');
     }
   }
 }

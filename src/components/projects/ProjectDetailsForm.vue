@@ -20,12 +20,12 @@
         <div class="second-step" v-if="firstStep.val && !secondStep.val">
             <div class="form-control" :class="{invalid: !annualRevenue.isValid}">
                 <label for="annualRevenue">Annual Revenue: </label>
-                <input type="number" id="annualRevenue" v-model.number="annualRevenue.val" @blur="clearValid('annualRevenue')">
+                <input type="number" min="0" id="annualRevenue" v-model.number="annualRevenue.val" @blur="clearValid('annualRevenue')">
                 <p v-if="!annualRevenue.isValid">revenue must not be less than $0.</p>
             </div>
             <div class="form-control" :class="{invalid: !annualExpenses.isValid}">
                 <label for="annualExpenses">Annual Unrecoverable Expenses: </label>
-                <input type="number" id="annualExpenses" v-model.number="annualExpenses.val" @blur="clearValid('annualExpenses')">
+                <input type="number" min="0" id="annualExpenses" v-model.number="annualExpenses.val" @blur="clearValid('annualExpenses')">
                 <p v-if="!annualExpenses.isValid">expenses must not be less than $0.</p>
             </div>
             <div>
@@ -33,29 +33,32 @@
                 <base-button @click.prevent="secondStepComplete">Next</base-button>
             </div>
         </div>
+
+
         <div class="final-step" v-if="firstStep.val && secondStep.val">
             <div class="form-control" :class="{invalid: !vacancyAllowanceInput.isValid}">
                 <label for="vacancyAllowanceInput">Vacancy Allowance, as a % of Rental Income:</label>
-                <input type="number" id="vacancyAllowanceInput" v-model="vacancyAllowanceInput.val" @blur="clearValid('vacancyAllowanceInput')" />
+                <input type="number" min="0" step="0.01" id="vacancyAllowanceInput" v-model="vacancyAllowanceInput.val" @blur="clearValid('vacancyAllowanceInput')" />
                 <p v-if="!vacancyAllowanceInput.isValid">Please enter a valid vacancy allowance %</p>
             </div>
             <div class="form-control" :class="{invalid: !managementFeeInput.isValid}">
                 <label for="managementFeeInput">Management Fee, as a % of Effective Gross Income:</label>
-                <input type="number" id="managementFeeInput" v-model="managementFeeInput.val" @blur="clearValid('managementFeeInput')" >
+                <input type="number" min="0" step="0.01" id="managementFeeInput" v-model="managementFeeInput.val" @blur="clearValid('managementFeeInput')" >
                 <p v-if="!managementFeeInput.isValid">Please enter a valid management fee %</p>
             </div>
             <div class="form-control" :class="{invalid: !structuralAllowanceInput.isValid}">
                 <label for="structuralAllowanceInput">Structural Allowance, as a % of Effective Gross Income:</label> 
-                <input type="number" id="structuralAllowanceInput" v-model="structuralAllowanceInput.val" @blur="clearValid('structuralAllowanceInput')">
+                <input type="number" min="0" step="0.01" id="structuralAllowanceInput" v-model="structuralAllowanceInput.val" @blur="clearValid('structuralAllowanceInput')">
                 <p v-if="!structuralAllowanceInput.isValid">Please enter a valid structural allowance %</p>
             </div>
             <div class="form-control" :class="{invalid: !capRateInput.isValid}">
                 <label for="capRateInput">Capitalization (Cap) Rate, based on market rates and property type:</label>
-                <input type="number" id="capRateInput" v-model="capRateInput.val" @blur="clearValid('capRateInput')">
+                <input type="number" min="0" step="0.01" id="capRateInput" v-model="capRateInput.val" @blur="clearValid('capRateInput')">
                 <p v-if="!capRateInput.isValid">Please enter a valid cap rate %</p>
             </div>
             <base-button v-if="firstStep && secondStep" @click.prevent="thirdStepGoBack">Back</base-button>
             <base-button v-if="firstStep && secondStep">Create Project</base-button>
+        
         </div>
     </form>
 </template>
@@ -220,7 +223,6 @@ export default {
                 // if (this.$state.getters.projects.find(project => projectId === projectNumber)) {
                 //     projectNumber + Math.floor(Math.random() * 10).toString();
                 // }
-            console.log(this.projectValue);
             const formData = {
                 projectId: projectNumber,
                 projectName: this.projectName.val,

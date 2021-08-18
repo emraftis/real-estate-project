@@ -73,7 +73,8 @@ export default {
         demoAuth() {
             this.email = 'demo@demo.com';
             this.password = 'demodemo';
-            this.submitForm()
+            this.mode = 'login';
+            this.submitForm();
         },
         async submitForm() {
             //form validation
@@ -101,11 +102,6 @@ export default {
             } catch (error) {
                 this.error = error.message || 'Failed to authenticate';
             }
-
-
-
-            
-
             this.isLoading = false;
         },
         switchAuthMode() {

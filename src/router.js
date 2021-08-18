@@ -5,8 +5,9 @@ import HomePage from "./pages/HomePage.vue";
 import NewProject from "./pages/NewProject.vue";
 import ProjectList from "./pages/ProjectList.vue";
 import ShowProject from "./pages/ShowProject.vue";
-import NotFound from "./pages/NotFound.vue";
 import UserAuth from "./pages/UserAuth.vue";
+import FAQ from "./pages/FAQ.vue";
+import NotFound from "./pages/NotFound.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -19,6 +20,7 @@ const router = createRouter({
       props: true,
       meta: { requiresAuth: true },
     }, //ShowProject.vue
+    { path: "/faq", component: FAQ },
     { path: "/new", component: NewProject, meta: { requiresAuth: true } }, //NewProject.vue
     { path: "/auth", component: UserAuth, meta: { requiresUnauth: true } }, //UserAuth.vue
     { path: "/:notFound(.*)", component: NotFound }, //NotFound.vue

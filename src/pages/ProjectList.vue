@@ -11,7 +11,9 @@
                 <h1 >My Projects</h1>
                 <router-link to="/new"><base-button class="outline"><strong>Create New Project</strong></base-button></router-link>
             </div>
-            <h1 v-else>Please login to view and create new projects</h1>   
+            <div class="empty-container" v-else>
+                <h1>Please login to view and create new projects.</h1>
+            </div>   
         </base-card>
         <ul>
             <project-item 
@@ -24,6 +26,7 @@
             :projectValue="project.projectValue"
             ></project-item>
         </ul>
+        
     </section>
 </div>
 </template>
@@ -33,6 +36,11 @@ import ProjectItem from '../components/projects/ProjectItem.vue';
 import TheHeader from '../components/layout/TheHeader.vue';
 
 export default {
+    data() {
+        return {
+            error: false,
+        }
+    },
     props: ['projectName','projectNOI','projectValue', 'projectId', 'projectDescription'],
     components: {
         ProjectItem,
@@ -41,6 +49,9 @@ export default {
     methods: {
         async loadProjects() {
             await this.$store.dispatch('fetchProjects')
+        },
+        handleError() {
+            this.error = null;
         }
     },
     created() {
@@ -76,5 +87,9 @@ li, ul {
 .card-container {
     background-color: white;
     opacity: 0.95;
+}
+
+.empty-container {
+    padding: 1rem;
 }
 </style>

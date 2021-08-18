@@ -1,7 +1,6 @@
 <template>
 <div>
     <the-header></the-header>
-    <div class="overlay">
     <section class="new-background">
         <base-card class="card-container">
             <h2>New Project</h2>
@@ -10,7 +9,6 @@
             </div>
         </base-card>
     </section>
-    </div>
 </div>
 </template>
 

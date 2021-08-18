@@ -1,5 +1,6 @@
 export default {
   async createProject(context, data) {
+    //parse the data to create the object for Firebase
     const userId = localStorage.getItem("userId");
     const projectData = {
       projectId: data.projectId,
@@ -14,6 +15,8 @@ export default {
       structuralAllowance: data.structuralAllowance,
       capRate: data.capRate,
     };
+
+    //posts the projectData to Firebase
     const response = await fetch(
       `https://real-estate-project-14317-default-rtdb.firebaseio.com/${userId}.json`,
       {
@@ -25,16 +28,14 @@ export default {
       }
     );
 
+    //error handling
     const responseData = await response.json();
     if (!response.ok) {
       const error = new Error(responseData.message || "Failed to Create");
       throw error;
     }
 
-    //Create Google Sheets w/ relevant data
-
-    //
-
+    //commits the data using createProject() mutation
     context.commit("createProject", {
       ...projectData,
       creatorId: userId,
@@ -42,12 +43,14 @@ export default {
   },
 
   async fetchProjects(context) {
+    //fetches all projects for a the user's specific userId
     const userId = localStorage.getItem("userId");
     const response = await fetch(
       `https://real-estate-project-14317-default-rtdb.firebaseio.com/${userId}.json`
     );
-    const responseData = await response.json();
 
+    //error handling
+    const responseData = await response.json();
     if (!response.ok) {
       const error = new Error(
         responseData.message || "Failed to Find Projects"
@@ -55,6 +58,7 @@ export default {
       throw error;
     }
 
+    //sets the projects (VueX state) for the current user.
     const projects = [];
     for (const key in responseData) {
       const project = {
