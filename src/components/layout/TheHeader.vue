@@ -12,14 +12,14 @@
               <li v-if="isLoggedIn"><span @click="logout"><a>Logout</a></span></li>
             </ul>
             <teleport to="body">
-              <ul :class="navActive">
-                  <span class="close" @click="navSlide">+</span>
-                  <li><router-link to="/questions"><span class="nav-text">FAQs</span></router-link></li>
-                  <li v-if="isLoggedIn"><router-link to="/new"><span class="nav-text">New Project</span></router-link></li>
-                  <li v-if="isLoggedIn"><router-link to="/projects"><span class="nav-text">My Projects</span></router-link></li>
-                  <li v-if="!isLoggedIn"><router-link to="/auth"><span class="nav-text">Login</span></router-link></li>
-                  <li v-if="isLoggedIn"><span @click="logout" id="logout-button" class="nav-text">Logout</span></li>
-              </ul>
+                <ul :class="navActive">
+                    <span class="close" @click="navSlide">+</span>
+                    <li><router-link to="/questions"><span class="nav-text">FAQs</span></router-link></li>
+                    <li v-if="isLoggedIn"><router-link to="/new"><span class="nav-text">New Project</span></router-link></li>
+                    <li v-if="isLoggedIn"><router-link to="/projects"><span class="nav-text">My Projects</span></router-link></li>
+                    <li v-if="!isLoggedIn"><router-link to="/auth"><span class="nav-text">Login</span></router-link></li>
+                    <li v-if="isLoggedIn"><span @click="logout" id="logout-button" class="nav-text">Logout</span></li>
+                </ul>
             </teleport>
             <div class="burger" @click="navSlide">
               <div class="line1"></div>
@@ -48,6 +48,13 @@ export default {
         return "nav-active"
       }
       return "nav-burger-links";
+    },
+    theBlur() {
+      if (this.navIsActive === true) {
+        return "blur-filter"
+      } else {
+        return null
+      }
     }
   },
   methods: {

@@ -162,7 +162,7 @@ textarea:focus {
 
 .form-background {
     background-color: white;
-    opacity: 0.87;
+    opacity: 0.95;
 }
 
 .container {

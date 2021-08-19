@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section>   
         <the-header></the-header>
         <base-card>
             <h1>Frequently Asked Questions</h1>
