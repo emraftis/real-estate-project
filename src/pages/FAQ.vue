@@ -1,8 +1,7 @@
 <template>
-<div class="background">
-    <div >
-    <the-header></the-header>
-    
+    <div>
+    <the-header class="navbar"></the-header>
+    <div class="background"></div>
     <base-card class="faq">
         <h1>Frequently Asked Questions</h1>
         <base-card :class="{aboutWebContainer: !showAboutWeb}">
@@ -14,8 +13,6 @@
                 <h3>Where is my data being saved?</h3>
                 <p>Your username and password are stored using Google's Firebase. Project data is also stored using Firebase's Realtime Database. 
                     We do not require any identifying information and your data is not used for any purposes outside of this application.</p>
-                <h3>Does this cost anything?</h3>
-                <p>No! This is 100% free.</p> 
             </div>
             <base-button v-if="showAboutWeb" @click="aboutWebOff" class="minimize-web-button">&#8679;</base-button>
         </base-card>  
@@ -83,16 +80,12 @@
                 <h3>What is the Cap Rate?</h3>
                 <p>The Cap Rate is a percentage rate normally derrived from comparable sales based on geographic location, property type, and property quality.
                     In a simple example, if a property is purchased for $1,000,000 and generates an NOI of $100,000 - the 'Cap Rate' would be 10%.</p>
-                <p>Source for Cap Rates: <a href="https://www.collierscanada.com/en-ca/research#q=cap%20rate&sort=%40datez32xpublished%20descending">Colliers</a></p>
+                <p>Source for Cap Rates: <a href="https://www.collierscanada.com/en-ca/research#q=cap%20rate&sort=%40datez32xpublished%20descending">Colliers Canada</a></p>
             </div>
             <base-button v-if="showAboutValue" @click="aboutValueOff" class="minimize-value-button">&#8679;</base-button>
         </base-card>
     </base-card>
     </div>
-    <footer>
-        <p></p>
-    </footer>
-</div>
 </template>
 
 <script>
@@ -110,18 +103,12 @@ export default {
     },
     methods: {
         toggleAboutWeb() {
-            // this.showAboutNOI = false;
-            // this.showAboutValue = false;
             return this.showAboutWeb = !this.showAboutWeb;
         },
         toggleAboutNOI() {
-            // this.showAboutWeb = false;
-            // this.showAboutValue = false;
             return this.showAboutNOI = !this.showAboutNOI;
         },
         toggleAboutValue() {
-            // this.showAboutNOI = false;
-            // this.showAboutWeb = false;
             return this.showAboutValue = !this.showAboutValue;
         },
         aboutWebOff() {
@@ -139,8 +126,17 @@ export default {
 
 <style scoped>
 
+
+.navbar {
+    position: static;
+}
+
 h1, h2, h3, p, .table-container-NOI {
     padding: 0.6rem;
+}
+
+h2 {
+    cursor: pointer;
 }
 
 
@@ -168,10 +164,11 @@ h1, h2, h3, p, .table-container-NOI {
 .background {
     background: url('https://images.unsplash.com/photo-1481026469463-66327c86e544?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2024&q=100');
     background-size: cover;
-    background-attachment: fixed;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    z-index: -1;
 }
 
 .minimize-web-button,

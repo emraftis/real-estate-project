@@ -6,8 +6,8 @@
         </div>
 
         <div>
-            <router-link  v-if="!isLoggedIn" to="/auth"><base-button class="intro-buttons"><span class="intro-button-text">Get Started</span></base-button></router-link>
-            <router-link @click="pageRoute" v-else to="/projects"><base-button class="intro-buttons"><span class="intro-button-text">My Projects</span></base-button></router-link>
+            <router-link v-if="!isLoggedIn" to="/auth"><base-button class="intro-buttons"><span class="intro-button-text">Get Started</span></base-button></router-link>
+            <router-link v-else to="/projects"><base-button class="intro-buttons"><span class="intro-button-text">My Projects</span></base-button></router-link>
         </div>
     </div>
 </template>
@@ -58,6 +58,10 @@ export default {
         transform-origin: center left;
         transform: scale(1.15)
     }
+
+    @media screen and (max-width: 500px) {}
+
+    @media screen and (max-width: 750px) {}
 
 
 </style>

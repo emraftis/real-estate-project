@@ -13,4 +13,11 @@
   margin: 2rem auto;
   max-width: 40rem;
 }
+
+@media screen and (max-width: 768px) {
+  .card {
+    max-width: 85%;
+  }
+}
+
 </style>

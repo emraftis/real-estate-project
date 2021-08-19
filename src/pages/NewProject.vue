@@ -33,7 +33,6 @@ export default {
 
 <style scoped>
 
-
 .new-background {
     background: url('https://images.unsplash.com/photo-1485627941502-d2e6429a8af0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=100');
     background-size: cover;
@@ -47,5 +46,13 @@ export default {
     background-color: white;
     opacity: 0.95;
 }
+
+@media screen and (max-width: 500px) {
+    .new-background {
+        max-width: 100%;
+    }
+}
+
+    @media screen and (max-width: 750px) {}
 
 </style>
