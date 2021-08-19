@@ -12,7 +12,7 @@
                 <textarea name="description" id="description" rows="5" v-model="projectDescription.val" @blur="clearValid('projectDescription')"></textarea>
                 <p v-if="!projectDescription.isValid">Description must not be empty.</p>
             </div>
-            <router-link to="/"><base-button>Cancel</base-button></router-link>
+            <router-link to="/projects"><base-button>Cancel</base-button></router-link>
             <base-button @click.prevent="firstStepComplete">Next</base-button>
         </div>
 
