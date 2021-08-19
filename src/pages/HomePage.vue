@@ -32,10 +32,12 @@ export default {
     .intro {
     background: url('https://images.unsplash.com/photo-1487837647815-bbc1f30cd0d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=100');
     background-size: cover;
+    background-attachment: fixed;
     position: fixed;
     width: 100%;
     height: 100vh;
     padding: 0 3rem;
+
     }
 
     .intro-text {
@@ -62,7 +64,7 @@ export default {
     @media screen and (max-width: 768px) {
         .intro-text {
             font-size: 4rem;
-            margin-top: 5rem;
+            margin-top: 2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -74,7 +76,7 @@ export default {
             align-items: center;
             justify-content: center;
             text-align: center;
-            margin-top: 40%;
+            margin-top: 20%;
             transform: scale(0.85)
         }
     }

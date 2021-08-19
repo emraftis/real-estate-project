@@ -30,7 +30,7 @@
                     <td class="value-col">{{ formatCurrency(managementFeeDollars) }}</td>
                 </tr>
                 <tr>
-                    <td>Less: Structural Fees ({{ structuralPercent }}%):</td>
+                    <td>Less: Structural Allowance ({{ structuralPercent }}%):</td>
                     <td class="value-col">{{ formatCurrency(structuralDollars) }}</td>
                 </tr>
                 <tr>
@@ -224,5 +224,14 @@ ul, li {
 .excelButton {
     display: flex;
     justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    .excelButton {
+        display: none;
+    }
+    td {
+        font-size: 0.75rem;
+    }
 }
 </style>

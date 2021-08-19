@@ -145,7 +145,7 @@ a:hover {
   .nav-links {
     position: absolute;
     left: 0;
-    height: 93vh;
+    height: 50vh;
     top: 7vh;
     background-color: rgba(80, 80, 80, 0.95);
     display: flex;
@@ -172,7 +172,7 @@ a:hover {
   .nav-active {
     position: absolute;
     left: 0;
-    height: 93vh;
+    height: 50vh;
     top: 7vh;
     background-color: rgba(80, 80, 80, 0.95);
     display: flex;
