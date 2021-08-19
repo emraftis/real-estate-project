@@ -5,7 +5,7 @@
             <p>Building Valuator</p>
         </div>
 
-        <div>
+        <div class="intro-button-container">
             <router-link v-if="!isLoggedIn" to="/auth"><base-button class="intro-buttons"><span class="intro-button-text">Get Started</span></base-button></router-link>
             <router-link v-else to="/projects"><base-button class="intro-buttons"><span class="intro-button-text">My Projects</span></base-button></router-link>
         </div>
@@ -59,9 +59,27 @@ export default {
         transform: scale(1.15)
     }
 
-    @media screen and (max-width: 500px) {}
+    @media screen and (max-width: 768px) {
+        .intro-text {
+            font-size: 4rem;
+            margin-top: 5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    @media screen and (max-width: 750px) {}
+        .intro-button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 40%;
+            transform: scale(0.85)
+        }
+    }
+    
+
 
 
 </style>

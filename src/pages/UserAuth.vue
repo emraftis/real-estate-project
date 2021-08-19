@@ -20,10 +20,12 @@
                         <input autocomplete="current-password" type="password" id="password" v-model.trim="password">
                     </div>
                     <p v-if="!formIsValid">Please enter a valid email and password, at least 6 characters long.</p>
-                    <base-button>{{ submitButtonCapition }}</base-button>
-                    <base-button type="button" mode="flat" @click="switchAuthMode">{{ switchModeButtonCapiion }}</base-button>
-                    <base-button class="demo-button" type="button" @click="demoAuth">Try Demo</base-button>
-                </form>
+                    <div class="buttons">
+                        <base-button>{{ submitButtonCapition }}</base-button>
+                        <base-button type="button" mode="outline" @click="switchAuthMode">{{ switchModeButtonCapiion }}</base-button>
+                        <base-button class="demo-button" type="button" @click="demoAuth">Try Demo</base-button>
+                    </div>
+                    </form>
             </base-card>
         </div>
     </div>
@@ -174,6 +176,18 @@ textarea:focus {
 .demo-button {
     position: relative;
     float: right;
+}
+
+@media screen and (max-width: 768px) {
+    .buttons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-header {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+    }
 }
 
 </style>

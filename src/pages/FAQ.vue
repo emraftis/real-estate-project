@@ -178,7 +178,17 @@ h2 {
     padding-top: 0;
     padding-bottom: 0;
     float: right;
-    margin-top: -1rem;
+    margin-top: -0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    h1, h2 {
+        font-size: 1.25rem;
+    }
+
+    td {
+        font-size: 0.8rem;
+    }
 }
 
 </style>
