@@ -30,7 +30,7 @@ export default {
     }
 
     .intro {
-    background: url('https://images.unsplash.com/photo-1487837647815-bbc1f30cd0d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=100');
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.17), rgba(255, 255, 255, 0.17)),url('https://images.unsplash.com/photo-1487837647815-bbc1f30cd0d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=100');
     background-size: cover;
     background-attachment: fixed;
     position: fixed;

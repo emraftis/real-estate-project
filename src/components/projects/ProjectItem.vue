@@ -5,7 +5,10 @@
             <p>{{ shortDescription(160) }}</p>
             <p>Net Operating Income: {{ formatCurrency(projectNOI) }}</p>
             <p>Estimated Value: {{ formatCurrency(projectValue) }}</p>
-            <router-link :to="projectDetailsLink"><base-button>Details</base-button></router-link>
+            <div class="buttons">
+                <router-link :to="projectDetailsLink"><base-button>Details</base-button></router-link>
+                <base-button id="delete-button" class="outline" @click="deleteItem">Delete</base-button>
+            </div>
         </base-card>
     </li>
 </template>
@@ -18,14 +21,18 @@ const formatter = new Intl.NumberFormat('en-US', {
 });
 
 export default {
-    props: ['projectName', 'projectNOI', 'projectValue', 'projectId', 'projectDescription'],
+    props: ['projectName', 'projectNOI', 'projectValue', 'projectId', 'projectDescription', 'projectKey'],
     computed: {
         projectDetailsLink() {
-            return "/projects/" + this.projectId;
+            return "/projects/" + this.projectKey.projectKey; 
         },
         theUserId() {
             return localStorage.getItem("userId");
         },
+        theProjectKey() {
+            return this.projectKey.projectKey;
+        }
+        
     },
     methods: {
         formatCurrency(number) {
@@ -37,6 +44,10 @@ export default {
             } else {
                 return this.projectDescription.slice(0,charLength) + "..."
             }
+        },
+        deleteItem() {
+            const firebaseId = this.theProjectKey;
+            this.$store.dispatch('deleteProject', firebaseId)
         }
     },
 }
@@ -51,5 +62,13 @@ h2, h3, p {
 .card-container {
     background-color: white;
     opacity: 0.95;
+}
+
+.buttons {
+    display: flex;
+}
+
+#delete-button {
+    margin-left: auto;    
 }
 </style>

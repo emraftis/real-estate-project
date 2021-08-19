@@ -18,7 +18,8 @@
         <ul>
             <project-item 
             v-for="project in projectList"
-            :key="project.projectId"
+            :key="project"
+            :projectKey="project"
             :projectId="project.projectId"
             :projectName="project.projectName"
             :projectDescription="project.description"
@@ -41,7 +42,7 @@ export default {
             error: false,
         }
     },
-    props: ['projectName','projectNOI','projectValue', 'projectId', 'projectDescription'],
+    props: ['projectName','projectNOI','projectValue', 'projectId', 'projectDescription', 'projectKey'],
     components: {
         ProjectItem,
         TheHeader,

@@ -62,6 +62,7 @@ export default {
     const projects = [];
     for (const key in responseData) {
       const project = {
+        projectKey: key,
         projectId: responseData[key].projectId,
         projectName: responseData[key].projectName,
         description: responseData[key].description,
@@ -78,5 +79,23 @@ export default {
       projects.push(project);
     }
     context.commit("setProjects", projects);
+  },
+
+  async deleteProject(context, data) {
+    const userId = localStorage.getItem("userId");
+    console.log(data);
+    const response = await fetch(
+      `https://real-estate-project-14317-default-rtdb.firebaseio.com/${userId}/${data}.json`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    const responseData = await response.json();
+    if (!response.ok) {
+      const error = new Error(responseData.message || "Failed to Delete");
+      throw error;
+    }
+    context.commit("refreshProjects", data.projectId);
   },
 };

@@ -1,8 +1,7 @@
 <template>
     <section>
         <the-header></the-header>
-        <teleport to="body">
-        <base-card class="faq">
+        <base-card>
             <h1>Frequently Asked Questions</h1>
             <base-card :class="{aboutWebContainer: !showAboutWeb}">
                 <h2 @click="toggleAboutWeb">About this App / Website</h2>
@@ -84,7 +83,6 @@
                 <base-button v-if="showAboutValue" @click="aboutValueOff" class="minimize-value-button">&#8679;</base-button>
             </base-card>
         </base-card>
-        </teleport>
     </section>
 </template>
 
@@ -128,6 +126,7 @@ export default {
 
 h1, h2, h3, p, .table-container-NOI {
     padding: 0.6rem;
+    color: black;
 }
 
 h2 {
@@ -148,11 +147,6 @@ h2 {
 
 .total-value-col {
     border-top: 1.5px solid black;
-}
-
-.faq {
-    background-color: white;
-    opacity: 95%;
 }
 
 .minimize-web-button,

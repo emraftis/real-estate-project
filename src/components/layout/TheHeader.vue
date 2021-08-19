@@ -5,7 +5,7 @@
                 <h1><router-link id="logo" to="/">Real Estate Calculator</router-link></h1>
             </div>
             <ul class="nav-links">
-              <li><router-link to="/faq">FAQs</router-link></li>
+              <li><router-link to="/questions">FAQs</router-link></li>
               <li v-if="isLoggedIn"><router-link to="/new">New Project</router-link></li>
               <li v-if="isLoggedIn"><router-link to="/projects">My Projects</router-link></li>
               <li v-if="!isLoggedIn"><router-link to="/auth">Login</router-link></li>
@@ -13,11 +13,12 @@
             </ul>
             <teleport to="body">
               <ul :class="navActive">
-                  <li><router-link to="/faq"><span class="nav-text">FAQs</span></router-link></li>
+                  <span class="close" @click="navSlide">+</span>
+                  <li><router-link to="/questions"><span class="nav-text">FAQs</span></router-link></li>
                   <li v-if="isLoggedIn"><router-link to="/new"><span class="nav-text">New Project</span></router-link></li>
                   <li v-if="isLoggedIn"><router-link to="/projects"><span class="nav-text">My Projects</span></router-link></li>
                   <li v-if="!isLoggedIn"><router-link to="/auth"><span class="nav-text">Login</span></router-link></li>
-                  <li v-if="isLoggedIn"><span @click="logout" class="nav-text">Logout</span></li>
+                  <li v-if="isLoggedIn"><span @click="logout" id="logout-button" class="nav-text">Logout</span></li>
               </ul>
             </teleport>
             <div class="burger" @click="navSlide">
@@ -101,6 +102,7 @@ nav {
 
 .nav-burger-links {
   display: none;
+  transform: translateX(-101%);
 }
 
 .burger {
@@ -141,20 +143,22 @@ a:hover {
     margin-left: 2rem;
   }
 
-  .nav-burger-links,
-  .nav-links {
+  .nav-burger-links {
     position: absolute;
     left: 0;
-    height: 50vh;
-    top: 7vh;
+    height: 100vh;
+    top: 0vh;
     background-color: rgba(80, 80, 80, 0.95);
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
+    width: 100%;
     transform: translateX(-101%);
     transition: transform 0.3s ease-in-out;
     z-index: 1;
+    justify-content: space-around;
+    padding-bottom: 75%;
+    padding-top: 15%;
   }
 
   .nav-burger-links {
@@ -172,18 +176,19 @@ a:hover {
   .nav-active {
     position: absolute;
     left: 0;
-    height: 50vh;
-    top: 7vh;
+    height: 100vh;
+    top: 0vh;
     background-color: rgba(80, 80, 80, 0.95);
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 65%;
+    width: 100%;
     transform: translateX(0%);
     transition: transform 0.3s ease-in-out;
     z-index: 1;
-    display: flex;
     justify-content: space-around;
+    padding-bottom: 75%;
+    padding-top: 15%;
   }
 
   li {
@@ -197,7 +202,6 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 2rem;
     padding-left: 2rem;
     padding-right: 2rem;
   }
@@ -214,6 +218,23 @@ a:hover {
   a:hover {
     border-bottom: none;
   }
+
+  .close {
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 4%;
+    left: 70%;
+    font-size: 3rem;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  #logout-button {
+    margin: 0.75rem;
+  }
+
 }
 
 </style>
