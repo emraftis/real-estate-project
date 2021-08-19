@@ -24,7 +24,7 @@ export default {
     props: ['projectName', 'projectNOI', 'projectValue', 'projectId', 'projectDescription', 'projectKey'],
     computed: {
         projectDetailsLink() {
-            return "/projects/" + this.projectKey.projectKey; 
+            return "/projects/" + this.projectId; 
         },
         theUserId() {
             return localStorage.getItem("userId");

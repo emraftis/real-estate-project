@@ -5,10 +5,10 @@
                 <h1><router-link id="logo" to="/">Real Estate Calculator</router-link></h1>
             </div>
             <ul class="nav-links">
+              <li v-if="!isLoggedIn"><router-link to="/auth">Login</router-link></li>
               <li><router-link to="/questions">FAQs</router-link></li>
               <li v-if="isLoggedIn"><router-link to="/new">New Project</router-link></li>
               <li v-if="isLoggedIn"><router-link to="/projects">My Projects</router-link></li>
-              <li v-if="!isLoggedIn"><router-link to="/auth">Login</router-link></li>
               <li v-if="isLoggedIn"><span @click="logout"><a>Logout</a></span></li>
             </ul>
             <teleport to="body">
@@ -77,13 +77,12 @@ export default {
     box-sizing: border-box;
 }
 
-
 a, ul li {
   list-style: none;
   color: white;
   text-decoration: none;
-  cursor: pointer;
   padding: 0.25rem;
+  cursor: pointer;
 }
 
 h1 {
@@ -104,7 +103,7 @@ nav {
   width: 50%;
   justify-content: space-around;
   margin-left: auto;
-  cursor: pointer;
+
 }
 
 .nav-burger-links {
@@ -166,6 +165,7 @@ a:hover {
     justify-content: space-around;
     padding-bottom: 75%;
     padding-top: 15%;
+    font-size: 1.5rem;
   }
 
   .nav-burger-links {
@@ -196,6 +196,7 @@ a:hover {
     justify-content: space-around;
     padding-bottom: 75%;
     padding-top: 15%;
+    font-size: 1.5rem;
   }
 
   li {
@@ -230,9 +231,9 @@ a:hover {
     color: white;
     cursor: pointer;
     position: absolute;
-    top: 4%;
-    left: 70%;
-    font-size: 3rem;
+    top: 1rem;
+    left: 75%;
+    font-size: 4rem;
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     transform: rotate(45deg);
