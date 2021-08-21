@@ -83,6 +83,7 @@ export default {
 
   async deleteProject(context, data) {
     const userId = localStorage.getItem("userId");
+    console.log(userId);
     console.log(data);
     const response = await fetch(
       `https://real-estate-project-14317-default-rtdb.firebaseio.com/${userId}/${data}.json`,
@@ -96,6 +97,6 @@ export default {
       const error = new Error(responseData.message || "Failed to Delete");
       throw error;
     }
-    context.commit("refreshProjects", data.projectId);
+    context.commit("refreshProjects", data);
   },
 };

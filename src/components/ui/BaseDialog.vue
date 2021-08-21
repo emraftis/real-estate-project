@@ -6,6 +6,7 @@
           <header>
             <slot name="header">
               <h2>{{ title }}</h2>
+              <div class="close-button"><span @click="exitButton">+</span></div>
             </slot>
           </header>
           <section>
@@ -13,7 +14,7 @@
           </section>
           <menu>
             <slot name="actions">
-              <base-button @click="tryClose">Close</base-button>
+              <base-button @click="tryClose">{{ button }}</base-button>
             </slot>
           </menu>
         </dialog>
@@ -37,8 +38,13 @@ export default {
       required: false,
       default: false,
     },
+    button: {
+      type: String,
+      required: false,
+      default: "Close"
+    }
   },
-  emits: ['close'],
+  emits: ['close', 'exit-button'],
   methods: {
     tryClose() {
       if (this.fixed) {
@@ -46,11 +52,38 @@ export default {
       }
       this.$emit('close');
     },
+    exitButton() {
+      if (this.fixed) {
+        return;
+      }
+      this.$emit('exit-button');
+    }
   },
 };
 </script>
 
 <style scoped>
+.close-button {
+  position: relative;
+  left: 46%;
+  top: -2.25rem;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -4rem;
+  cursor: pointer;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  background-color: #2e2e2e;
+}
+
+.close-button:hover {
+  background-color: #f16565;
+  color: #2e2e2e;
+}
+
 .backdrop {
   position: fixed;
   top: 0;

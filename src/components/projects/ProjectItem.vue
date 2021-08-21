@@ -1,5 +1,11 @@
 <template>
     <li>
+        <base-dialog :show="confirm" title="Confirm" button="Confirm" @close="confirmDelete" @exitButton="handleConfirm">
+            <p>Are you sure you want to delete this project?</p>
+        </base-dialog>
+        <base-dialog :show="isLoading" title="Loading..." fixed>
+                <base-spinner></base-spinner>
+            </base-dialog>
         <base-card class="card-container">
             <h2>{{ projectName }}</h2>
             <p>{{ shortDescription(160) }}</p>
@@ -22,6 +28,12 @@ const formatter = new Intl.NumberFormat('en-US', {
 
 export default {
     props: ['projectName', 'projectNOI', 'projectValue', 'projectId', 'projectDescription', 'projectKey'],
+    data() {
+        return {
+            confirm: false,
+            isLoading: false,
+        }
+    },
     computed: {
         projectDetailsLink() {
             return "/projects/" + this.projectId; 
@@ -46,8 +58,18 @@ export default {
             }
         },
         deleteItem() {
+            this.confirm = true;
+        },
+        handleConfirm() {
+            this.confirm = false;
+        },
+        async confirmDelete() {
+            this.isLoading = true;
+            this.confirm = false;
             const firebaseId = this.theProjectKey;
-            this.$store.dispatch('deleteProject', firebaseId)
+            console.log(firebaseId)
+            await this.$store.dispatch('deleteProject', firebaseId)
+            this.isLoading = false;
         }
     },
 }

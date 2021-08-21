@@ -6,8 +6,11 @@ export default {
     state.projects = payload;
   },
   refreshProjects(state, payload) {
+    console.log(state.projects);
+    console.log(payload);
     state.projects = state.projects.filter(
-      (project) => project.projectKey === payload
+      (project) => project.projectKey !== payload
     );
+    console.log(state.projects);
   },
 };
