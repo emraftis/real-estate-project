@@ -8,7 +8,7 @@
     <section>
         <base-card class="card-container">
             <div v-if="isLoggedIn">
-                <h1 >My Projects</h1>
+                <h1>My Projects</h1>
                 <router-link to="/new"><base-button class="outline"><strong>Create New Project</strong></base-button></router-link>
             </div>
             <div class="empty-container" v-else>
